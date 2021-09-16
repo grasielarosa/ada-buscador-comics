@@ -1,0 +1,23 @@
+form {
+    @include boundaries();
+    display: flex;
+
+    .form-control {
+        background-color: transparent;
+        border-bottom: 1px solid $primary-color !important;
+        border-radius: 0%;
+    }
+
+    .form-select-sm {
+        background-color: transparent;
+        border-bottom: 1px solid $primary-color !important;
+    }
+
+    i {
+        color: set-text-color($second-color);
+    }
+    .input-group-text {
+        background-color: transparent;
+        border-bottom: 1px solid $primary-color !important;
+    }
+}
