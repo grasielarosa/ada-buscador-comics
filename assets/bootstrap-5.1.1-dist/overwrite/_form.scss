@@ -1,6 +1,5 @@
 form {
     @include boundaries();
-    display: flex;
 
     .form-control {
         background-color: transparent;

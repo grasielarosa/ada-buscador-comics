@@ -1,0 +1,17 @@
+a {
+    text-decoration: none;
+    color: set-text-color($second-color);
+
+    &:hover {
+        color: $complementary-color;
+    }
+}
+
+.card {
+    background-color: transparent;
+
+    .card-footer {
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+}
