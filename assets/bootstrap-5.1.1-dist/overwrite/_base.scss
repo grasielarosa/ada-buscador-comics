@@ -1,0 +1,51 @@
+$primary-color: #d71515;
+$second-color: #f3eee9;
+$complementary-color: #152150;
+
+@function set-text-color($color) {
+    @if lightness($color) > 70 {
+        @return $primary-color;
+    } @else {
+        @return $second-color;
+    }
+}
+
+@mixin boundaries($isAuto: true) {
+    width: 90%;
+    max-width: 980px;
+
+    @if $isAuto {
+        margin: auto;
+    }
+}
+
+.flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+html {
+    /* a cada 1rem será considera 10px */
+    font-size: 62.5%;
+    body {
+        background-color: $second-color;
+        color: set-text-color($second-color);
+        font-size: 1.6rem;
+        height: 100vh;
+        font-family: "Montserrat", sans-serif;
+        text-rendering: optimizelegibility;
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+h1 {
+    font-family: "Bangers", cursive;
+}
