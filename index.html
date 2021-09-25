@@ -1,88 +1,115 @@
 <!DOCTYPE html>
 <html lang="es-AR">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@200;400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="./assets/bootstrap-5.1.1-dist/css/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@200;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./assets/bootstrap-5.1.1-dist/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="./css/main.css" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="container-fluid">
-        <h1>comic super search</h1>
+      <h1>comic super search</h1>
     </header>
     <main>
-        <div class="container">
+      <div class="container">
+        <div class="row">
+          <form id="searchForm" class="col d-flex justify-content-evenly">
+            <div class="form-floating col-5 me-3">
+              <div class="input-group">
+                <span class="input-group-text border-0"
+                  ><i class="bi bi-search"></i
+                ></span>
+                <input
+                  type="text"
+                  class="form-control border-0"
+                  placeholder="busca"
+                  id="searchInput"
+                />
+              </div>
+            </div>
+            <div class="input-group-sm me-3">
+              <label for="search-type" class="col-form-label-sm">tipo</label>
+              <select
+                name="search-type"
+                id="searchType"
+                class="form-select-sm border-0"
+              >
+                <option value="comic">comic</option>
+                <option value="character">personaje</option>
+              </select>
+            </div>
+            <div class="input-group-sm me-3">
+              <label for="search-in-order" class="col-form-label-sm"
+                >orden</label
+              >
+              <select
+                name="search-in-order"
+                id="searchInOrder"
+                class="form-select-sm border-0"
+              >
+                <option value="aToZ">a-z</option>
+                <option value="zToA">z-a</option>
+                <option value="newer">más reciente</option>
+                <option value="older">más antiguo</option>
+              </select>
+            </div>
             <div class="row">
-                <form id="searchForm" class="col d-flex justify-content-evenly">
-                    <div class="form-floating col-5 me-3">
-                        <div class="input-group">
-                            <span class="input-group-text border-0"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control border-0" placeholder="busca" id="searchInput">
-                        </div>
-                    </div>
-                    <div class="input-group-sm me-3 ">
-                        <label for="search-type" class="col-form-label-sm">tipo</label>
-                        <select name="search-type" id="searchType" class="form-select-sm border-0">
-                            <option value="comic">comic</option>
-                            <option value="character">personaje</option>
-                        </select>
-                    </div>
-                    <div class="input-group-sm me-3">
-                        <label for="search-in-order" class="col-form-label-sm">orden</label>
-                        <select name="search-in-order" id="searchInOrder" class="form-select-sm border-0">
-                            <option value="aToZ">a-z</option>
-                            <option value="zToA">z-a</option>
-                            <option value="newer">más reciente</option>
-                            <option value="older">más antiguo</option>
-                        </select>
-                    </div>
-                    <div class="row">
-                        <div class="col  mt-4 me-4">
-                            <button class="btn btn-primary" type="submit" id="searchBtn">Buscar</button>
-                        </div>
-                    </div>
-                </form>
+              <div class="col mt-4 me-4">
+                <button class="btn btn-primary" type="submit" id="searchBtn">
+                  Buscar
+                </button>
+              </div>
             </div>
-            
-
+          </form>
         </div>
+      </div>
 
-
-        <div class="container mt-5">
-            <div class="row row-cols-3 g-2" id="apiResult" >
-
-            </div>
-            <div class="row d-flex justify-content-center p-0">
-                <div class="col-2 d-flex justify-content-around  p-0">
-                <button class="btn btn-primary" id="firstPage"><i class="bi bi-chevron-bar-left"></i></button>
-                <button class="btn btn-primary" id="prevPage"><i class="bi bi-chevron-double-left"></i></button>
-                <button class="btn btn-primary" id="nextPage"><i class="bi bi-chevron-double-right"></i></button>
-                <button class="btn btn-primary" id="lastPage"><i class="bi bi-chevron-bar-right"></i></button>
-                </div>
-            </div>
+      <div class="container mt-5">
+        <div class="row row-cols-3 g-2" id="apiResult"></div>
+        <div class="row d-flex justify-content-center p-0">
+          <div id="btnPages" class="col-2 d-flex justify-content-around p-0">
+            <button class="btn btn-primary" id="firstPage">
+              <i class="bi bi-chevron-bar-left"></i>
+            </button>
+            <button class="btn btn-primary" id="prevPage">
+              <i class="bi bi-chevron-double-left"></i>
+            </button>
+            <button class="btn btn-primary" id="nextPage">
+              <i class="bi bi-chevron-double-right"></i>
+            </button>
+            <button class="btn btn-primary" id="lastPage">
+              <i class="bi bi-chevron-bar-right"></i>
+            </button>
+          </div>
         </div>
-        
-
-
+      </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
-        integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
-        async></script>
-        <script src="./assets/js/search.js"></script>
+    <footer><br /><br /><br /></footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+      integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
+      crossorigin="anonymous"
+      async
+    ></script>
+    <script src="./assets/js/search.js"></script>
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/buttons.js"></script>
     <script src="./assets/bootstrap-5.1.1-dist/js/bootstrap.min.js"></script>
-
-
-</body>
-
+  </body>
 </html>
