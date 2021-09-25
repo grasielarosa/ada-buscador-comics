@@ -22,45 +22,53 @@
     <main>
         <div class="container">
             <div class="row">
-                <form class="col d-flex justify-content-evenly">
+                <form id="searchForm" class="col d-flex justify-content-evenly">
                     <div class="form-floating col-5 me-3">
                         <div class="input-group">
                             <span class="input-group-text border-0"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control border-0" placeholder="busca">
+                            <input type="text" class="form-control border-0" placeholder="busca" id="searchInput">
                         </div>
                     </div>
                     <div class="input-group-sm me-3 ">
-                        <label for="" class="col-form-label-sm">tipo</label>
-                        <select name="" id="" class="form-select-sm border-0">
-                            <option value="">comic</option>
-                            <option value="">personaje</option>
+                        <label for="search-type" class="col-form-label-sm">tipo</label>
+                        <select name="search-type" id="searchType" class="form-select-sm border-0">
+                            <option value="comic">comic</option>
+                            <option value="character">personaje</option>
                         </select>
                     </div>
                     <div class="input-group-sm me-3">
-                        <label for="" class="col-form-label-sm">orden</label>
-                        <select name="" id="" class="form-select-sm border-0">
-                            <option value="">a-z</option>
-                            <option value="">z-a</option>
-                            <option value="">más reciente</option>
-                            <option value="">más antiguo</option>
+                        <label for="search-in-order" class="col-form-label-sm">orden</label>
+                        <select name="search-in-order" id="searchInOrder" class="form-select-sm border-0">
+                            <option value="aToZ">a-z</option>
+                            <option value="zToA">z-a</option>
+                            <option value="newer">más reciente</option>
+                            <option value="older">más antiguo</option>
                         </select>
+                    </div>
+                    <div class="row">
+                        <div class="col  mt-4 me-4">
+                            <button class="btn btn-primary" type="submit" id="searchBtn">Buscar</button>
+                        </div>
                     </div>
                 </form>
             </div>
-            <div class="row">
-                <div class="col d-flex justify-content-end mt-4 me-4">
-                    <button class="btn btn-primary" type="submit">Buscar</button>
-                </div>
-            </div>
+            
 
         </div>
 
 
         <div class="container mt-5">
-            <div class="row row-cols-3 g-2" id="apiResult" data-masonry='{"percentPosition": true }'>
+            <div class="row row-cols-3 g-2" id="apiResult" >
 
             </div>
-
+            <div class="row d-flex justify-content-center p-0">
+                <div class="col-2 d-flex justify-content-around  p-0">
+                <button class="btn btn-primary" id="firstPage"><i class="bi bi-chevron-bar-left"></i></button>
+                <button class="btn btn-primary" id="prevPage"><i class="bi bi-chevron-double-left"></i></button>
+                <button class="btn btn-primary" id="nextPage"><i class="bi bi-chevron-double-right"></i></button>
+                <button class="btn btn-primary" id="lastPage"><i class="bi bi-chevron-bar-right"></i></button>
+                </div>
+            </div>
         </div>
         
 
@@ -69,7 +77,9 @@
     <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
         integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
         async></script>
+        <script src="./assets/js/search.js"></script>
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/buttons.js"></script>
     <script src="./assets/bootstrap-5.1.1-dist/js/bootstrap.min.js"></script>
 
 
