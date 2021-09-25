@@ -14,3 +14,7 @@
         background-color: darken($primary-color, 10);
     }
 }
+
+i {
+    pointer-events: none;
+}
