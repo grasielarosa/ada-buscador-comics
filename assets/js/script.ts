@@ -35,3 +35,14 @@ const render = (comics) => {
   container!.innerHTML = contentHTML;
   //container.dataset.masonry = "{'percentPosition': true }";
 };
+
+const init = async () => {
+  const urlInit = `${MAIN_URL}/comics?ts=1&apikey=${API_KEY}&hash=${HASH}`;
+
+  const comics = await getData(urlInit);
+  render(comics.results);
+
+  // falta hacer el init por la url del browser
+};
+
+init();
