@@ -1,4 +1,4 @@
-const getData = (urlApi) => {
+const getData = (urlApi: string) => {
   return fetch(urlApi)
     .then((res) => res.json())
     .then((json) => {
@@ -33,14 +33,28 @@ const render = (comics) => {
                    `;
   }
   container!.innerHTML = contentHTML;
-  //container.dataset.masonry = "{'percentPosition': true }";
+  //   const msnry = new Masonry(container, {
+  //     itemSelector: ".col-3",
+  //     percentPosition: true,
+  //   });
+  //   const cards = container!.querySelectorAll(".card");
+  //   cards.forEach(function (el) {
+  //     msnry.layout();
+  //   });
 };
 
+const counterResults = (comics) => {
+  total = comics;
+  const container = document.querySelector("#textResult");
+  container!.innerHTML = `<span> Su búsqueda tiene ${total} resultados.</span>`;
+  buttons(total);
+};
 const init = async () => {
   const urlInit = `${MAIN_URL}/comics?ts=1&apikey=${API_KEY}&hash=${HASH}`;
 
   const comics = await getData(urlInit);
   render(comics.results);
+  counterResults(comics.total);
 
   // falta hacer el init por la url del browser
 };

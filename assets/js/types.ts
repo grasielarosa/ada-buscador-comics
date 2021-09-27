@@ -1,5 +1,12 @@
+// type params = {
+//     urlType,
+//     orderBy,
+//     limit,
+//     offset,
+// }
+
 type Comic = {
-/*
+  /*
    characters: {available: 0, collectionURI: 'http://gateway.marvel.com/v1/public/comics/82967/characters', items: Array(0), returned: 0}
 collectedIssues: []
 collections: []
@@ -31,5 +38,4 @@ variantDescription: ""
 variants: (12) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
 
     */
-
-}
+};

@@ -7,18 +7,18 @@ const API_KEY = `0f4aa487d42d3e3fc4a6f9b5500b84a0`;
 const HASH = `2b6ed155c0f547b08ac62b49a559d04d`;
 
 const typeParam = () => {
-  const typeUrl = searchType.value == "comic" ? "comics" : "characters";
+  const typeUrl = searchType!.value == "comic" ? "comics" : "characters";
   return typeUrl;
 };
 
 const orderBy = () => {
-  const searchInOrder = document.querySelector("#searchInOrder").value;
+  const searchInOrder = document.querySelector("#searchInOrder")!.value;
   switch (searchInOrder) {
     case "aToZ":
-      return searchType.value == "comic" ? "title" : "name";
+      return searchType!.value == "comic" ? "title" : "name";
 
     case "zToA":
-      return searchType.value == "comic" ? "-title" : "-name";
+      return searchType!.value == "comic" ? "-title" : "-name";
 
     case "newer":
       return "modified";
@@ -62,6 +62,7 @@ const onChangeHandle = async (e) => {
 
   const comics = await getData(urlAPI);
   render(comics.results);
+  counterResults(comics.total);
 };
 
 searchForm!.addEventListener("change", onChangeHandle);
