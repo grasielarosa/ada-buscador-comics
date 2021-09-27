@@ -93,6 +93,7 @@ var onChangeHandle = function (e) { return __awaiter(void 0, void 0, void 0, fun
             case 1:
                 comics = _a.sent();
                 render(comics.results);
+                counterResults(comics.total);
                 return [2 /*return*/];
         }
     });

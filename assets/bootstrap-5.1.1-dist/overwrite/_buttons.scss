@@ -1,9 +1,19 @@
+.btn.btn-primary[disabled] {
+    background-color: lighten($primary-color, 5);
+    color: set-text-color($second-color);
+    border-color: set-text-color($primary-color);
+    box-shadow: none !important;
+}
+
 .btn-primary {
     background-color: $primary-color;
     color: set-text-color($primary-color);
+    border-color: set-text-color($primary-color);
+    box-shadow: none !important;
 
     &:hover {
         background-color: darken($primary-color, 10);
+        border-color: set-text-color($primary-color);
     }
 
     &:active {
@@ -12,6 +22,7 @@
 
     &:focus {
         background-color: darken($primary-color, 10);
+        border-color: set-text-color($primary-color);
     }
 }
 

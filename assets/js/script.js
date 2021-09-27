@@ -51,7 +51,20 @@ var render = function (comics) {
         contentHTML += "\n                    <div class=\"col-3\">\n                    <div class=\"card\">\n                        <a href=\"" + urlComic + "\" target=\"_blank\">\n                            <div class=\"card-body\">\n                                <img src=\"" + comic.thumbnail.path + "." + comic.thumbnail.extension + "\" alt=\"" + (comic.title || comic.name) + "\"\n                                    class=\"card-body img-fluid\">\n                            </div>\n                            <div class=\"card-footer\">\n                                <span class=\"\">" + (comic.title || comic.name) + "</span>\n                            </div>\n                        </a>\n                    </div>\n                    </div>\n                   ";
     }
     container.innerHTML = contentHTML;
-    //container.dataset.masonry = "{'percentPosition': true }";
+    //   const msnry = new Masonry(container, {
+    //     itemSelector: ".col-3",
+    //     percentPosition: true,
+    //   });
+    //   const cards = container!.querySelectorAll(".card");
+    //   cards.forEach(function (el) {
+    //     msnry.layout();
+    //   });
+};
+var counterResults = function (comics) {
+    total = comics;
+    var container = document.querySelector("#textResult");
+    container.innerHTML = "<span> Su b\u00FAsqueda tiene " + total + " resultados.</span>";
+    buttons(total);
 };
 var init = function () { return __awaiter(void 0, void 0, void 0, function () {
     var urlInit, comics;
@@ -63,6 +76,7 @@ var init = function () { return __awaiter(void 0, void 0, void 0, function () {
             case 1:
                 comics = _a.sent();
                 render(comics.results);
+                counterResults(comics.total);
                 return [2 /*return*/];
         }
     });
