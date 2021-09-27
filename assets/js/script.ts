@@ -6,7 +6,7 @@ const getData = (urlApi: string) => {
     });
 };
 
-const render = (comics) => {
+const render = (comics: object) => {
   const container = document.querySelector("#apiResult");
   let contentHTML = "";
 
@@ -43,12 +43,13 @@ const render = (comics) => {
   //   });
 };
 
-const counterResults = (comics) => {
+const counterResults = (comics: number) => {
   total = comics;
   const container = document.querySelector("#textResult");
   container!.innerHTML = `<span> Su búsqueda tiene ${total} resultados.</span>`;
   buttons(total);
 };
+
 const init = async () => {
   const urlInit = `${MAIN_URL}/comics?ts=1&apikey=${API_KEY}&hash=${HASH}`;
 

@@ -1,10 +1,10 @@
-const searchForm = document.querySelector("#searchForm");
-const searchType = document.getElementById("searchType");
-const searchBtn = document.querySelector("#searchBtn");
-
 const MAIN_URL = `https://gateway.marvel.com:443/v1/public`;
 const API_KEY = `0f4aa487d42d3e3fc4a6f9b5500b84a0`;
 const HASH = `2b6ed155c0f547b08ac62b49a559d04d`;
+
+const searchForm = document.querySelector("#searchForm");
+const searchType = document.getElementById("searchType");
+const searchBtn = document.querySelector("#searchBtn");
 
 const typeParam = () => {
   const typeUrl = searchType!.value == "comic" ? "comics" : "characters";
@@ -32,6 +32,7 @@ const orderBy = () => {
 };
 
 const changeUrlBrowser = (params) => {
+  console.log(typeof params);
   const paramsStr = new URLSearchParams();
   paramsStr.set("orderBy", params.orderBy);
   paramsStr.set("limit", params.limit);
@@ -50,7 +51,7 @@ const getUrlApi = (params) => {
 const onChangeHandle = async (e) => {
   e.preventDefault();
 
-  const params = {
+  const params: object = {
     urlType: typeParam(),
     orderBy: orderBy(),
     limit,

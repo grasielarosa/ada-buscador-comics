@@ -1,14 +1,14 @@
-const btnPages: HTMLElement = document.querySelector("#btnPages");
-const firstPage: HTMLElement = document.querySelector("#firstPage");
-const prevPage: HTMLElement = document.querySelector("#prevPage");
-const nextPage: HTMLElement = document.querySelector("#nextPage");
-const lastPage: HTMLElement = document.querySelector("#lastPage");
+const btnPages: HTMLElement = document.querySelector("#btnPages")!;
+const firstPage: HTMLElement = document.querySelector("#firstPage")!;
+const prevPage: HTMLElement = document.querySelector("#prevPage")!;
+const nextPage: HTMLElement = document.querySelector("#nextPage")!;
+const lastPage: HTMLElement = document.querySelector("#lastPage")!;
 
 let offset: number = 0;
 const limit: number = 20;
 let total: number;
 
-const offsetParam = (e) => {
+const offsetParam = (e: Event) => {
   const el = e.target;
   if (el == firstPage) {
     offset = 0;
