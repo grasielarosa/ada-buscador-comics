@@ -97,6 +97,21 @@ form i {
   color: #d71515;
 }
 
+form input:focus {
+  background-color: #efe9e2 !important;
+  border: none !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-box-decoration-break: none;
+          box-decoration-break: none;
+}
+
+form input:active {
+  border: none !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 form .input-group-text {
   background-color: transparent;
   border-bottom: 1px solid #d71515 !important;

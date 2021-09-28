@@ -31,13 +31,23 @@ const orderBy = () => {
   }
 };
 
+const nameParam = () => {
+  const searchInput = document.querySelector("#searchInput").value;
+
+  return searchInput;
+};
+
 const changeUrlBrowser = (params) => {
-  console.log(typeof params);
   const paramsStr = new URLSearchParams();
   paramsStr.set("orderBy", params.orderBy);
   paramsStr.set("limit", params.limit);
   paramsStr.set("offset", params.offset);
   paramsStr.set("urlType", params.urlType);
+  const inputName =
+    searchType!.value == "comic"
+      ? paramsStr.set("titleStartsWith", params.name)
+      : paramsStr.set("nameStartsWith", params.name);
+
   window.history.pushState({}, "", "?" + paramsStr.toString());
 };
 const getUrlApi = (params) => {
@@ -45,14 +55,21 @@ const getUrlApi = (params) => {
   paramsStr.set("orderBy", params.orderBy);
   paramsStr.set("limit", params.limit);
   paramsStr.set("offset", params.offset);
+  const inputName =
+    searchType!.value == "comic"
+      ? paramsStr.set("titleStartsWith", params.name)
+      : paramsStr.set("nameStartsWith", params.name);
+  console.log(paramsStr.toString());
+
   return `${MAIN_URL}/${params.urlType}?${paramsStr}&ts=1&apikey=${API_KEY}&hash=${HASH}`;
 };
 
 const onChangeHandle = async (e) => {
   e.preventDefault();
 
-  const params: object = {
+  const params = {
     urlType: typeParam(),
+    name: nameParam(),
     orderBy: orderBy(),
     limit,
     offset,
