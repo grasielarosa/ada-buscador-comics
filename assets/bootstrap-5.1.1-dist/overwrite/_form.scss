@@ -15,6 +15,19 @@ form {
     i {
         color: set-text-color($second-color);
     }
+
+    input {
+        &:focus {
+            background-color: darken($second-color, 2) !important;
+            border: none !important;
+            box-shadow: none;
+            box-decoration-break: none;
+        }
+        &:active {
+            border: none !important;
+            box-shadow: none;
+        }
+    }
     .input-group-text {
         background-color: transparent;
         border-bottom: 1px solid $primary-color !important;

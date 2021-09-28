@@ -60,13 +60,19 @@ var orderBy = function () {
             return "modified";
     }
 };
+var nameParam = function () {
+    var searchInput = document.querySelector("#searchInput").value;
+    return searchInput;
+};
 var changeUrlBrowser = function (params) {
-    console.log(typeof params);
     var paramsStr = new URLSearchParams();
     paramsStr.set("orderBy", params.orderBy);
     paramsStr.set("limit", params.limit);
     paramsStr.set("offset", params.offset);
     paramsStr.set("urlType", params.urlType);
+    var inputName = searchType.value == "comic"
+        ? paramsStr.set("titleStartsWith", params.name)
+        : paramsStr.set("nameStartsWith", params.name);
     window.history.pushState({}, "", "?" + paramsStr.toString());
 };
 var getUrlApi = function (params) {
@@ -74,6 +80,10 @@ var getUrlApi = function (params) {
     paramsStr.set("orderBy", params.orderBy);
     paramsStr.set("limit", params.limit);
     paramsStr.set("offset", params.offset);
+    var inputName = searchType.value == "comic"
+        ? paramsStr.set("titleStartsWith", params.name)
+        : paramsStr.set("nameStartsWith", params.name);
+    console.log(paramsStr.toString());
     return MAIN_URL + "/" + params.urlType + "?" + paramsStr + "&ts=1&apikey=" + API_KEY + "&hash=" + HASH;
 };
 var onChangeHandle = function (e) { return __awaiter(void 0, void 0, void 0, function () {
@@ -84,6 +94,7 @@ var onChangeHandle = function (e) { return __awaiter(void 0, void 0, void 0, fun
                 e.preventDefault();
                 params = {
                     urlType: typeParam(),
+                    name: nameParam(),
                     orderBy: orderBy(),
                     limit: limit,
                     offset: offset,

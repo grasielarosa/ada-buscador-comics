@@ -1,9 +1,10 @@
-// type params = {
-//     urlType,
-//     orderBy,
-//     limit,
-//     offset,
-// }
+type params = {
+  urlType;
+  name?;
+  orderBy;
+  limit;
+  offset;
+};
 
 type Comic = {
   /*
