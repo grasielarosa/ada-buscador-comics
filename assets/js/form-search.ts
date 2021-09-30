@@ -1,18 +1,17 @@
-const MAIN_URL = `https://gateway.marvel.com:443/v1/public`;
-const API_KEY = `0f4aa487d42d3e3fc4a6f9b5500b84a0`;
-const HASH = `2b6ed155c0f547b08ac62b49a559d04d`;
-
-const searchForm = document.querySelector("#searchForm");
-const searchType = document.getElementById("searchType");
-const searchBtn = document.querySelector("#searchBtn");
+const searchForm = document.querySelector("#searchForm") as HTMLInputElement;
+const searchInput = document.querySelector("#searchInput") as HTMLInputElement;
+const searchType = document.getElementById("searchType") as HTMLSelectElement;
+const searchBtn = document.querySelector("#searchBtn") as HTMLButtonElement;
 
 const typeParam = () => {
-  const typeUrl = searchType!.value == "comic" ? "comics" : "characters";
+  const typeUrl = searchType!.value == "comics" ? "comics" : "characters";
   return typeUrl;
 };
 
 const orderBy = () => {
-  const searchInOrder = document.querySelector("#searchInOrder")!.value;
+  const searchInOrder = (
+    document.querySelector("#searchInOrder") as HTMLSelectElement
+  ).value;
   switch (searchInOrder) {
     case "aToZ":
       return searchType!.value == "comic" ? "title" : "name";
@@ -21,20 +20,14 @@ const orderBy = () => {
       return searchType!.value == "comic" ? "-title" : "-name";
 
     case "newer":
-      return "modified";
+      return "-modified";
 
     case "older":
-      return "-modified";
+      return "modified";
 
     default:
       return "modified";
   }
-};
-
-const nameParam = () => {
-  const searchInput = document.querySelector("#searchInput").value;
-
-  return searchInput;
 };
 
 const changeUrlBrowser = (params) => {
@@ -43,24 +36,25 @@ const changeUrlBrowser = (params) => {
   paramsStr.set("limit", params.limit);
   paramsStr.set("offset", params.offset);
   paramsStr.set("urlType", params.urlType);
-  const inputName =
-    searchType!.value == "comic"
-      ? paramsStr.set("titleStartsWith", params.name)
-      : paramsStr.set("nameStartsWith", params.name);
+  if (params.name && searchType.value) {
+    const nameSearch =
+      searchType.value === "comic" ? "titleStartsWith" : "nameStartsWith";
+    paramsStr.set(nameSearch, params.name);
+  }
 
   window.history.pushState({}, "", "?" + paramsStr.toString());
 };
+
 const getUrlApi = (params) => {
   const paramsStr = new URLSearchParams();
   paramsStr.set("orderBy", params.orderBy);
   paramsStr.set("limit", params.limit);
   paramsStr.set("offset", params.offset);
-  const inputName =
-    searchType!.value == "comic"
-      ? paramsStr.set("titleStartsWith", params.name)
-      : paramsStr.set("nameStartsWith", params.name);
-  console.log(paramsStr.toString());
-
+  if (params.name && searchType.value) {
+    const nameSearch =
+      searchType.value === "comic" ? "titleStartsWith" : "nameStartsWith";
+    paramsStr.set(nameSearch, params.name);
+  }
   return `${MAIN_URL}/${params.urlType}?${paramsStr}&ts=1&apikey=${API_KEY}&hash=${HASH}`;
 };
 
@@ -69,7 +63,7 @@ const onChangeHandle = async (e) => {
 
   const params = {
     urlType: typeParam(),
-    name: nameParam(),
+    name: searchInput.value,
     orderBy: orderBy(),
     limit,
     offset,
@@ -83,4 +77,5 @@ const onChangeHandle = async (e) => {
   counterResults(comics.total);
 };
 
-searchForm!.addEventListener("change", onChangeHandle);
+searchForm.addEventListener("change", onChangeHandle);
+searchBtn.addEventListener("click", onChangeHandle);

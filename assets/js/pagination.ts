@@ -1,8 +1,8 @@
-const btnPages: HTMLElement = document.querySelector("#btnPages")!;
-const firstPage: HTMLElement = document.querySelector("#firstPage")!;
-const prevPage: HTMLElement = document.querySelector("#prevPage")!;
-const nextPage: HTMLElement = document.querySelector("#nextPage")!;
-const lastPage: HTMLElement = document.querySelector("#lastPage")!;
+const btnPages: HTMLButtonElement = document.querySelector("#btnPages")!;
+const firstPage: HTMLButtonElement = document.querySelector("#firstPage")!;
+const prevPage: HTMLButtonElement = document.querySelector("#prevPage")!;
+const nextPage: HTMLButtonElement = document.querySelector("#nextPage")!;
+const lastPage: HTMLButtonElement = document.querySelector("#lastPage")!;
 
 let offset: number = 0;
 const limit: number = 20;
