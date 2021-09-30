@@ -35,6 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var MAIN_URL = "https://gateway.marvel.com:443/v1/public";
+var API_KEY = "0f4aa487d42d3e3fc4a6f9b5500b84a0";
+var HASH = "2b6ed155c0f547b08ac62b49a559d04d";
 var getData = function (urlApi) {
     return fetch(urlApi)
         .then(function (res) { return res.json(); })
@@ -42,28 +45,24 @@ var getData = function (urlApi) {
         return json.data;
     });
 };
-var render = function (comics) {
-    var container = document.querySelector("#apiResult");
-    var contentHTML = "";
-    for (var _i = 0, comics_1 = comics; _i < comics_1.length; _i++) {
-        var comic = comics_1[_i];
-        var urlComic = comic.urls[0].url;
-        contentHTML += "\n                    <div class=\"col-3\">\n                    <div class=\"card\">\n                        <a href=\"" + urlComic + "\" target=\"_blank\">\n                            <div class=\"card-body\">\n                                <img src=\"" + comic.thumbnail.path + "." + comic.thumbnail.extension + "\" alt=\"" + (comic.title || comic.name) + "\"\n                                    class=\"card-body img-fluid\">\n                            </div>\n                            <div class=\"card-footer\">\n                                <span class=\"\">" + (comic.title || comic.name) + "</span>\n                            </div>\n                        </a>\n                    </div>\n                    </div>\n                   ";
-    }
-    container.innerHTML = contentHTML;
-    //   const msnry = new Masonry(container, {
-    //     itemSelector: ".col-3",
-    //     percentPosition: true,
-    //   });
-    //   const cards = container!.querySelectorAll(".card");
-    //   cards.forEach(function (el) {
-    //     msnry.layout();
-    //   });
-};
+var render = function (comics) { return __awaiter(void 0, void 0, void 0, function () {
+    var container, contentHTML, _i, comics_1, comic, urlComic;
+    return __generator(this, function (_a) {
+        container = document.querySelector("#apiResult");
+        contentHTML = "";
+        for (_i = 0, comics_1 = comics; _i < comics_1.length; _i++) {
+            comic = comics_1[_i];
+            urlComic = comic.urls[0].url;
+            contentHTML += "\n                    <div class=\"col-3\">\n                    <div class=\"card card-selected\">\n                        <a href=\"./detailed-search.html?title=" + (comic.title || comic.name) + "&id=" + comic.id + "&type=" + searchType.value + "\" target=\"_blank\">\n                            <div class=\"card-body\">\n                                <img src=\"" + comic.thumbnail.path + "." + comic.thumbnail.extension + "\" alt=\"" + (comic.title || comic.name) + "\"\n                                    class=\"card-body img-fluid\">\n                            </div>\n                            <div class=\"card-footer\">\n                                <span class=\"\">" + (comic.title || comic.name) + "</span>\n                            </div>\n                        </a>\n                    </div>\n                    </div>\n                   ";
+        }
+        container.innerHTML = contentHTML;
+        return [2 /*return*/];
+    });
+}); };
 var counterResults = function (comics) {
     total = comics;
     var container = document.querySelector("#textResult");
-    container.innerHTML = "<span> Su b\u00FAsqueda tiene " + total + " resultados.</span>";
+    container.innerHTML = "<span class=\"col-4 fw-bold mb-4\"> Su b\u00FAsqueda tiene " + total + " resultados.</span>";
     buttons(total);
 };
 var init = function () { return __awaiter(void 0, void 0, void 0, function () {
